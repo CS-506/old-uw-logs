@@ -9,6 +9,8 @@ UW Madison publishes most of the data used in the project in the form of PDFs. W
 
 ## Links
 
+These are archived on [archive.is](https://archive.is) if they are moved or replaced.
+
 * [UW Madison Facilities](https://fpm-www1.fpm.wisc.edu/smoasp/FacilityName.asp?OrderBy=Name)
 * [DIR Reports](https://registrar.wisc.edu/current-reports/)
 * [GPA Reports](https://registrar.wisc.edu/grade-reports/)

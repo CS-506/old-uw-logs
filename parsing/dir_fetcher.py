@@ -1,5 +1,8 @@
+#!/usr/bin/env python
 import requests
+import os
 from bs4 import BeautifulSoup, SoupStrainer
+import urllib
 
 REPORT_PAGE = 'https://registrar.wisc.edu/current-reports/'
 
@@ -38,4 +41,13 @@ def fetch_dir_links():
 
   return dir_hrefs
 
-print(fetch_dir_links())
+data_path = '../data'
+
+if not os.path.isdir(data_path):
+  os.makedirs(data_path)
+
+links = fetch_dir_links()
+for term_code in links:
+  link = links[term_code]
+
+  urllib.urlretrieve(link, '%s/dir_%s.pdf' % (data_path, term_code))
