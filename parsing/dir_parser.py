@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import subprocess
+import tabula
 
 COLUMN_DIVIDERS = ','.join(map(str, [
   55,80,95,130,150,210,295,360,420,480,550
@@ -9,17 +9,7 @@ def parse_dir_pdf(pdf):
   subject = None
   term = None # term should be same for entire file
 
-  process = subprocess.Popen([
-    'java', 
-    '-jar', 
-    'tabula-1.0.1-jar-with-dependencies.jar', 
-    pdf,
-    '--columns=' + COLUMN_DIVIDERS,
-    '--format=TSV',
-    '--pages=all'
-  ], stdout=subprocess.PIPE)
-
-  out, err = process.communicate()
+  out = tabula.execute(pdf, COLUMN_DIVIDERS)
 
   sections = []
 

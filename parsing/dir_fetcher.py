@@ -7,6 +7,15 @@ import urllib
 REPORT_PAGE = 'https://registrar.wisc.edu/current-reports/'
 
 def fetch_dir_links():
+  """Retrieve links to DIR PDFs from the registrar website.
+  
+  [description]
+  
+  Returns:
+    dict -- All DIR files with term code as key, URL as value
+  """
+
+
   page = requests.get(REPORT_PAGE)
   links = BeautifulSoup(page.text, 'html.parser', parse_only=SoupStrainer('a'))
 
@@ -27,7 +36,10 @@ def fetch_dir_links():
     if 'MEMO' in href_upper or 'CALL' in href_upper:
       continue
 
+    # get the file name, it contains the term code
     file = href.split("/")[-1]
+
+    # extract the term code, the only digits in the file name
     sis_term_code = int(filter(str.isdigit, str(file)))
 
     # check if we already encountered this DIR, in case something weird is going on
@@ -37,17 +49,18 @@ def fetch_dir_links():
       print('Ignoring: %s, using existing DIR: %s' % (href, existing_href))
       continue
 
+    # term code -> link
     dir_hrefs[sis_term_code] = href
 
   return dir_hrefs
 
-data_path = '../data'
+# data_path = '../data'
 
-if not os.path.isdir(data_path):
-  os.makedirs(data_path)
+# if not os.path.isdir(data_path):
+#   os.makedirs(data_path)
 
-links = fetch_dir_links()
-for term_code in links:
-  link = links[term_code]
+# links = fetch_dir_links()
+# for term_code in links:
+#   link = links[term_code]
 
-  urllib.urlretrieve(link, '%s/dir_%s.pdf' % (data_path, term_code))
+#   urllib.urlretrieve(link, '%s/dir_%s.pdf' % (data_path, term_code))
