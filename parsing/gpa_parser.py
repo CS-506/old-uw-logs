@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import subprocess
 import sys
 
@@ -91,9 +92,6 @@ def parse_gpa_pdf(pdf):
           print("Poorly formatted PDF? Fix precision of column dividers?")
           continue
 
-    if course_num != "536":
-      continue
-
     sections.append({
       "dept_num": dept_num,
       "course_num": course_num,
@@ -104,5 +102,3 @@ def parse_gpa_pdf(pdf):
     })
 
   return sections
-
-print parse_gpa_pdf("gpa_spring.pdf")
