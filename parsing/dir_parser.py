@@ -42,7 +42,6 @@ def parse_dir_pdf(pdf):
     try:
       int(cols[1])
     except ValueError:
-      print(cols)
       continue
     
     # unknown values: cols[0], cols[4]
@@ -76,8 +75,8 @@ def parse_dir_pdf(pdf):
     else:
       days_array = days.split(' ')
 
-    if facility == 'ONLINE':
-      building = 'ONLINE'
+    if facility in ('ONLINE', 'OFF CAMPUS'):
+      building = facility
       room = None
     elif facility == '':
       building = None
