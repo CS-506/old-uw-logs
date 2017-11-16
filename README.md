@@ -7,3 +7,4 @@ Making sense of UW Madison course data.
 * [UW Madison Facilities](https://fpm-www1.fpm.wisc.edu/smoasp/FacilityName.asp?OrderBy=Name)
 * [DIR Reports](https://registrar.wisc.edu/current-reports/)
 * [GPA Reports](https://registrar.wisc.edu/grade-reports/)
+* [SIS Term Codes](http://www.bussvc.wisc.edu/bursar/termcode.html)

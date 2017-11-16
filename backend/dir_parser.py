@@ -15,7 +15,8 @@ out, err = process.communicate()
 for row in out.split("\r\n"):
   cols = row.split("\t")
 
-  if len(cols) < 12:
+  # valid rows have 12 columns
+  if len(cols) != 12:
     continue
 
   # valid rows should have a course number
