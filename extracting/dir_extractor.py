@@ -8,14 +8,6 @@ COLUMNS = ','.join(map(str, [
   55,80,95,130,150,210,295,360,420,480,550
 ]))
 
-# TODO:
-# 1124 is literally the only term which has a PDF which
-# differs from the others. Different fonts, colors, and
-# table format... *sigh*
-COLUMNS_1124 = ','.join(map(str, [
-
-]))
-
 class DirExtractor(Extractor):
   def __init__(self):
     super(DirExtractor, self).__init__(REPORT_PAGE)
@@ -39,6 +31,10 @@ class DirExtractor(Extractor):
     return 'dir_%s.pdf' % sis_term_code
 
   def extract_data(self, context, contents):
+    # TODO:
+    # 1124 is literally the only term which has a PDF which
+    # differs from the others. Different fonts, colors, and
+    # table format... *sigh*
     if '1124' in context['file_path']:
       return []
 
