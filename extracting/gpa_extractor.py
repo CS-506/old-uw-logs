@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 import subprocess
 import sys
+from utils import tabula
 
 COLUMN_DIVIDERS = ','.join(map(str, [
   200,215,235,280,300,330,360,385,410,435,
   460,480,510,540,560,580,610,630,660,690
 ]))
 
-def parse_gpa_pdf(pdf):
+def extract_gpa(pdf):
   sections = []
 
   school = None
@@ -15,22 +16,13 @@ def parse_gpa_pdf(pdf):
   dept_num = None
   last_was_dept_name = False
 
+  # set of all school names
   schools = set()
 
   # department id -> (name, abbreviation)
   departments = {}
 
-  process = subprocess.Popen([
-    'java', 
-    '-jar', 
-    'tabula-1.0.1-jar-with-dependencies.jar', 
-    pdf,
-    '--columns=' + COLUMN_DIVIDERS,
-    '--format=TSV',
-    '--pages=all'
-  ], stdout=subprocess.PIPE)
-
-  out, err = process.communicate()
+  out = tabula.execute(pdf, COLUMN_DIVIDERS)
 
   for row in out.split("\r\n"):
     cols = row.split("\t")
@@ -101,4 +93,4 @@ def parse_gpa_pdf(pdf):
       "distribution": distribution
     })
 
-  return sections
+  return (schools, departments, sections)

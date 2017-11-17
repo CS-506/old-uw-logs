@@ -12,3 +12,7 @@ Luckily, all the DIR files are in the same format, as are all the GPA distributi
 
 * Can course names be changed from year to year, while retaining their course number? (i.e. Math 222 changes from Calc 2 to Calculus II)
 * Can course numbers be repurposed? (i.e. Math 222 changes from Calc 2 to Probability Theory)
+
+### Notes
+
+* [DIR 1124](https://registrar.wiscweb.wisc.edu/wp-content/uploads/sites/36/2017/06/1124_Final_DIR.pdf) is different than every other DIR.
